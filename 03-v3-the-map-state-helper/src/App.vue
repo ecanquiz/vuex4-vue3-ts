@@ -13,18 +13,25 @@
 
 import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
-import { State } from './interfaces'
+import { State, Book } from './interfaces'
 
 export default defineComponent({
-  data() {
+    data(): {
+      book: Book
+    } {
     return {
-      localCount: 1 as number 
+      localCount: 1 as number, 
+      book: {
+        title: 'Vue 3 Guide',
+        author: 'Vue Team',
+        year: 2020
+      } as Book
     }
   },
   computed: mapState({
     count: state => state.count,
     countAlias: 'count',
-    countPlusLocalState (state: State): bool {
+    countPlusLocalState (state: State): number {
       return state.count + this.localCount
     }
   })
